@@ -8,7 +8,7 @@ namespace CSVTools
     {
         public static CSV ParseCSV(string filePath)
         {
-            CSV csv = new CSV(new List<Dictionary<string, string>>());
+            var csv = new CSV(new List<Dictionary<string, string>>());
 
             using (TextFieldParser parser = new TextFieldParser(filePath.ToString()))
             {
@@ -33,6 +33,11 @@ namespace CSVTools
 
         internal static Dictionary<string, string> ProcessRow(string[] row, string[] titles)
         {
+            if (row.Length != titles.Length)
+            {
+                throw new System.ArgumentException("Invalid CSV formating. Number of fields does not match columns");
+            }
+
             var tempDictionary = new Dictionary<string, string>();
 
             for (int i = 0; i < titles.Count(); i++)
