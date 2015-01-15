@@ -8,7 +8,7 @@ namespace CSVTools
     {
         public static CSV ParseCSV(string filePath)
         {
-            CSV csv = new CSV(new List<Dictionary<string, string>>());
+            var csv = new CSV(new List<Dictionary<string, string>>());
 
             using (TextFieldParser parser = new TextFieldParser(filePath.ToString()))
             {
