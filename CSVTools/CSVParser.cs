@@ -6,7 +6,7 @@ namespace CSVTools
 {
     public static class CSVParser
     {
-        public static CSV ParseCSV(string filePath)
+        public static CSV ParseCSV(string filePath, bool ignoreBadRows = false)
         {
             var csv = new CSV(new List<Dictionary<string, string>>());
 
@@ -24,21 +24,31 @@ namespace CSVTools
 
                 while (!parser.EndOfData)
                 {
-                    csv.AddRow(ProcessRow(parser.ReadFields(), colTitles));
+                    var row = ProcessRow(parser.ReadFields(), colTitles, ignoreBadRows);
+
+                    if (row != null)
+                    {
+                        csv.AddRow(row);
+                    }
                 }
             }
 
             return csv;
         }
 
-        internal static Dictionary<string, string> ProcessRow(string[] row, string[] titles)
+        internal static Dictionary<string, string> ProcessRow(string[] row, string[] titles, bool ignoreBadRows)
         {
+            var tempDictionary = new Dictionary<string, string>();
+
             if (row.Length != titles.Length)
             {
-                throw new System.ArgumentException("Invalid CSV formating. Number of fields does not match columns");
-            }
+                if (!ignoreBadRows)
+                {
+                    throw new System.ArgumentException("Invalid CSV formating. Number of fields does not match columns");
+                }
 
-            var tempDictionary = new Dictionary<string, string>();
+                return null;
+            }
 
             for (int i = 0; i < titles.Count(); i++)
             {

@@ -25,7 +25,11 @@ namespace CSVToolsUT
             var row = GenerteTestArray("ROW ", 7);
             var titles = GenerteTestArray("Title ", 7);
 
-            var dic = CSVParser.ProcessRow(row, titles);
+            var dic = CSVParser.ProcessRow(row, titles, true);
+
+            Assert.AreEqual<int>(7, dic.Count);
+
+            dic = CSVParser.ProcessRow(row, titles, false);
 
             Assert.AreEqual<int>(7, dic.Count);
         }
@@ -37,7 +41,18 @@ namespace CSVToolsUT
             var row = GenerteTestArray("ROW ", 7);
             var titles = GenerteTestArray("Title ", 10);
 
-            var dic = CSVParser.ProcessRow(row, titles);
+            var dic = CSVParser.ProcessRow(row, titles, false);
+        }
+
+        [TestMethod]
+        public void ProcessRowLongerTitleIgnore()
+        {
+            var row = GenerteTestArray("ROW ", 7);
+            var titles = GenerteTestArray("Title ", 10);
+
+            var dic = CSVParser.ProcessRow(row, titles, true);
+
+            Assert.IsNull(dic);
         }
     }
 }
