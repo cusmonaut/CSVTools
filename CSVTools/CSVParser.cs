@@ -33,6 +33,11 @@ namespace CSVTools
 
         internal static Dictionary<string, string> ProcessRow(string[] row, string[] titles)
         {
+            if (row.Length != titles.Length)
+            {
+                throw new System.ArgumentException("Invalid CSV formating. Number of fields does not match columns");
+            }
+
             var tempDictionary = new Dictionary<string, string>();
 
             for (int i = 0; i < titles.Count(); i++)
