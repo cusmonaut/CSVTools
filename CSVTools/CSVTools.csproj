@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CSV.cs" />
     <Compile Include="CSVParser.cs" />
+    <Compile Include="CSVWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

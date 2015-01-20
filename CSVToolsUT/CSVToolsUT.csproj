@@ -51,8 +51,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CSVUT.cs" />
+    <Compile Include="CSVWriterUT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSVParserUT.cs" />
+    <Compile Include="TestHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSVTools\CSVTools.csproj">

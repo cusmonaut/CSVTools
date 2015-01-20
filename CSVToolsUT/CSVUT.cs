@@ -8,26 +8,10 @@ namespace CSVToolsUT
     [TestClass]
     public class CSVUT
     {
-        private CSV GenerateTestData(int numberOfRows)
-        {
-            CSV csv = new CSV(new List<Dictionary<string, string>>());
-
-            for (int i = 0; i < numberOfRows; i++)
-            {
-                var dic = new Dictionary<string, string>();
-
-                dic.Add("Key" + i, "Value" + i);
-
-                csv.AddRow(dic);
-            }
-
-            return csv;
-        }
-
         [TestMethod]
         public void DeleteAtIndex()
         {
-            var csv = GenerateTestData(3);
+            var csv = TestHelpers.GenerateTestData(3);
 
             csv.DeleteRowAt(2);
 
@@ -42,7 +26,7 @@ namespace CSVToolsUT
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void DeleteAtNoneEexistingIndex()
         {
-            var csv = GenerateTestData(1);
+            var csv = TestHelpers.GenerateTestData(1);
 
             csv.DeleteRowAt(2);
         }
@@ -50,7 +34,7 @@ namespace CSVToolsUT
         [TestMethod]
         public void DeleteRow()
         {
-            var csv = GenerateTestData(3);
+            var csv = TestHelpers.GenerateTestData(3);
 
             var row = csv.Rows[0];
 
@@ -64,7 +48,7 @@ namespace CSVToolsUT
         {
             // Remove does not throw an exception when trying to delete something
             // not in the list so this should pass.
-            var csv = GenerateTestData(3);
+            var csv = TestHelpers.GenerateTestData(3);
 
             var row = csv.Rows[0];
 
@@ -75,7 +59,7 @@ namespace CSVToolsUT
         [TestMethod]
         public void AddRow()
         {
-            var csv = GenerateTestData(0);
+            var csv = TestHelpers.GenerateTestData(0);
 
             var dic = new Dictionary<string, string>();
 
