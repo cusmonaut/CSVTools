@@ -1,5 +1,5 @@
 # CSVTools
-This is a simple project that was created to read CSVs into an object that could be used in multiple projects.
+This is a simple project that was created to read CSVs into an object and write CSV files from and object.
 
 To build just download it and open the sln file in visual studio 2013.
 
